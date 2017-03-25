@@ -38,7 +38,7 @@ function _init(reducers, getRoutes, callback) {
     const routes = getRoutes(store);
     const baseHistory = syncHistoryWithStore(browserHistory, store);
     const history = MetabaseSettings.rootPath() == "/" ? baseHistory :
-        useRouterHistory(() => baseHistory)({ basename: MetabaseSettings.rootPath() });
+        useRouterHistory(() => baseHistory)({ basename: MetabaseSettings.rootPath().slice(0, -1) });
 
     ReactDOM.render(
         <Provider store={store}>

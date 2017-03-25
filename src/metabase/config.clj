@@ -92,5 +92,4 @@
     (format "%s (%s %s)" tag hash branch)))
 
 (def mb-context-path
-  (config-str :mb-context-path)
-  )
+  (config-str :mb-context-path))
