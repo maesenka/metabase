@@ -90,7 +90,7 @@ export const saveDatabase = createThunkAction(SAVE_DATABASE, function(database, 
                 //$scope.$emit("database:created", new_database);
                 savedDatabase = await MetabaseApi.db_create(database);
                 MetabaseAnalytics.trackEvent("Databases", "Create", database.engine);
-                dispatch(push('/admin/databases?created='+savedDatabase.id));
+                dispatch(push('/metabase/admin/databases?created='+savedDatabase.id));
             }
 
             // this object format is what FormMessage expects:
@@ -117,7 +117,7 @@ export const deleteDatabase = createThunkAction(DELETE_DATABASE, function(databa
             await MetabaseApi.db_delete({"dbId": databaseId});
             MetabaseAnalytics.trackEvent("Databases", "Delete", redirect ? "Using Detail" : "Using List");
             if (redirect) {
-                dispatch(push('/admin/databases/'));
+                dispatch(push('/metabase/admin/databases/'));
             }
             return databaseId;
         } catch(error) {

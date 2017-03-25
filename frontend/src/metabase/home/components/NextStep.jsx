@@ -13,7 +13,7 @@ export default class NextStep extends Component {
     }
 
     async componentWillMount() {
-        let response = await fetch("/api/setup/admin_checklist", { credentials: 'same-origin' });
+        let response = await fetch("/metabase/api/setup/admin_checklist", { credentials: 'same-origin' });
         if (response.status === 200) {
             let sections = await response.json();
             for (let section of sections) {

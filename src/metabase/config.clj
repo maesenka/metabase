@@ -29,7 +29,8 @@
    :mb-version-info-url "http://static.metabase.com/version-info.json"
    :max-session-age "20160"                     ; session length in minutes (14 days)
    :mb-colorize-logs "true"
-   :mb-emoji-in-logs "true"})
+   :mb-emoji-in-logs "true"
+   :mb-context-path "/" })
 
 
 (defn config-str
@@ -89,3 +90,7 @@
   "A formatted version string representing the currently running application."
   (let [{:keys [tag hash branch]} mb-version-info]
     (format "%s (%s %s)" tag hash branch)))
+
+(def mb-context-path
+  (config-str :mb-context-path)
+  )

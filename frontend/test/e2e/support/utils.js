@@ -139,6 +139,7 @@ export const getJson = async (driver, url) => {
 }
 
 export const checkLoggedIn = async (server, driver, email) => {
+    alert("server is:" + JSON.stringify(server) );
     let currentUser = await getJson(driver, `${server.host}/api/user/current`);
     return currentUser && currentUser.email === email;
 }

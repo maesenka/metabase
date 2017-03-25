@@ -9,6 +9,7 @@ import Tooltip from "metabase/components/Tooltip.jsx";
 import FieldSet from "metabase/components/FieldSet.jsx";
 
 import Urls from "metabase/lib/urls";
+import MetabaseSettings from "metabase/lib/settings";
 
 import _ from "underscore";
 import cx from "classnames";
@@ -60,7 +61,7 @@ const UnsavedQueryButton = ({ className, type, result: { json_query }, card }) =
 const SavedQueryButton = ({ className, type, result: { json_query }, card }) =>
     <DownloadButton
         className={className}
-        url={`/api/card/${card.id}/query/${type}`}
+        url={`${MetabaseSettings.rootPath()}api/card/${card.id}/query/${type}`}
         params={{ parameters: JSON.stringify(json_query.parameters) }}
         extensions={[type]}
     >

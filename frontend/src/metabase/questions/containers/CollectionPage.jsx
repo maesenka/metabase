@@ -41,7 +41,7 @@ export default class CollectionPage extends Component {
                         name={collection && collection.name}
                         description={collection && collection.description}
                         onBack={window.history.length === 1 ?
-                            () => push("/questions") :
+                            () => push("/metabase/questions") :
                             () => goBack()
                         }
                     />

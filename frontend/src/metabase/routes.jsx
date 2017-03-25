@@ -68,7 +68,7 @@ import PublicDashboard from "metabase/public/containers/PublicDashboard.jsx";
 
 const MetabaseIsSetup = UserAuthWrapper({
     predicate: authData => !authData.hasSetupToken,
-    failureRedirectPath: "/setup",
+    failureRedirectPath: "/metabase/setup",
     authSelector: state => ({ hasSetupToken: MetabaseSettings.hasSetupToken() }), // HACK
     wrapperDisplayName: 'MetabaseIsSetup',
     allowRedirectBack: false,
@@ -76,7 +76,7 @@ const MetabaseIsSetup = UserAuthWrapper({
 });
 
 const UserIsAuthenticated = UserAuthWrapper({
-    failureRedirectPath: '/auth/login',
+    failureRedirectPath: '/metabase/auth/login',
     authSelector: state => state.currentUser,
     wrapperDisplayName: 'UserIsAuthenticated',
     redirectAction: (location) =>
@@ -93,7 +93,7 @@ const UserIsAuthenticated = UserAuthWrapper({
 
 const UserIsAdmin = UserAuthWrapper({
     predicate: currentUser => currentUser && currentUser.is_superuser,
-    failureRedirectPath: '/unauthorized',
+    failureRedirectPath: '/metabase/unauthorized',
     authSelector: state => state.currentUser,
     allowRedirectBack: false,
     wrapperDisplayName: 'UserIsAdmin',
@@ -101,8 +101,8 @@ const UserIsAdmin = UserAuthWrapper({
 });
 
 const UserIsNotAuthenticated = UserAuthWrapper({
-    predicate: currentUser => !currentUser,
-    failureRedirectPath: '/',
+    predicate: currentUser =>  !currentUser,
+    failureRedirectPath: '',
     authSelector: state => state.currentUser,
     allowRedirectBack: false,
     wrapperDisplayName: 'UserIsNotAuthenticated',

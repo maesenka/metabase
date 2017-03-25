@@ -14,7 +14,7 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = {
     saveCollection,
-    onClose: () => push("/questions")
+    onClose: () => push("/metabase/questions")
 }
 
 @connect(mapStateToProps, mapDispatchToProps)

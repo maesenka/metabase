@@ -17,7 +17,7 @@ import { getStore } from './store'
 import { refreshSiteSettings } from "metabase/redux/settings";
 import { setErrorPage } from "metabase/redux/app";
 
-import { Router, browserHistory } from "react-router";
+import { Router, useRouterHistory, browserHistory } from "react-router";
 import { push, syncHistoryWithStore } from 'react-router-redux'
 
 // we shouldn't redirect these URLs because we want to handle them differently
@@ -33,9 +33,11 @@ const WHITELIST_FORBIDDEN_URLS = [
 ];
 
 function _init(reducers, getRoutes, callback) {
+    console.log("Init function invoked");
     const store = getStore(reducers, browserHistory);
     const routes = getRoutes(store);
-    const history = syncHistoryWithStore(browserHistory, store);
+    const baseHistory = syncHistoryWithStore(browserHistory, store);
+    const history = useRouterHistory(() => baseHistory)({ basename: `/metabase` });
 
     ReactDOM.render(
         <Provider store={store}>
@@ -61,10 +63,10 @@ function _init(reducers, getRoutes, callback) {
 
     // received a 401 response
     api.on("401", (url) => {
-        if (url === "/api/user/current") {
+        if (url ===  MetabaseSettings.rootPath() + "api/user/current") {
             return
         }
-        store.dispatch(push("/auth/login"));
+        store.dispatch(push(MetabaseSettings.rootPath() +  "auth/login"));
     });
 
     // received a 403 response

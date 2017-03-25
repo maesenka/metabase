@@ -22,7 +22,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = {
     onUpdatePermission: updatePermission,
     onSave: savePermissions,
-    onCancel: () => window.history.length > 1 ? goBack() : push("/questions")
+    onCancel: () => window.history.length > 1 ? goBack() : push("/metabase/questions")
 };
 
 const Editor = connect(mapStateToProps, mapDispatchToProps)(PermissionsEditor);

@@ -51,7 +51,7 @@ export default class CustomGeoJSONWidget extends Component {
             delete value[id];
         }
 
-        await fetch("/api/setting/custom-geojson", {
+        await fetch("/metabase/api/setting/custom-geojson", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ value }),

@@ -1,9 +1,9 @@
 import _ from "underscore";
-import Query, { createQuery } from "metabase/lib/query";
+import Query, {createQuery} from "metabase/lib/query";
 import Utils from "metabase/lib/utils";
 
-import { CardApi } from "metabase/services";
-
+import {CardApi} from "metabase/services";
+import MetabaseSettings from "metabase/lib/settings";
 
 export function createCard(name = null) {
     return {
@@ -113,9 +113,9 @@ export function b64url_to_utf8(b64url) {
 export function urlForCardState(state, dirty) {
     var url;
     if (state.cardId) {
-        url = "/card/" + state.cardId;
+        url = MetabaseSettings.rootPath() + "card/" + state.cardId;
     } else {
-        url = "/q";
+        url = MetabaseSettings.rootPath() + "q";
     }
     if (state.serializedCard && dirty) {
         url += "#" + state.serializedCard;

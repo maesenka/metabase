@@ -1,12 +1,14 @@
 // provides functions for building urls to things we care about
+import MetabaseSettings from "metabase/lib/settings";
+
 var Urls = {
     card: function(card_id) {
         // NOTE that this is for an ephemeral card link, not an editable card
-        return "/card/"+card_id;
+        return MetabaseSettings.rootPath() + "card/"+card_id;
     },
 
     dashboard: function(dashboard_id) {
-        return "/dash/"+dashboard_id;
+        return MetabaseSettings.rootPath() + "dash/"+dashboard_id;
     },
 
     modelToUrl: function(model, model_id) {
@@ -23,7 +25,7 @@ var Urls = {
     },
 
     tableRowsQuery: function(database_id, table_id, metric_id, segment_id) {
-        let url = "/q#?db="+database_id+"&table="+table_id;
+        let url = MetabaseSettings.rootPath() +  "q#?db="+database_id+"&table="+table_id;
 
         if (metric_id) {
             url = url + "&metric="+metric_id;
@@ -37,23 +39,23 @@ var Urls = {
     },
 
     collection(collection) {
-        return `/questions/collections/${encodeURIComponent(collection.slug)}`;
+        return `${MetabaseSettings.rootPath()}questions/collections/${encodeURIComponent(collection.slug)}`;
     },
 
     label(label) {
-        return `/questions/search?label=${encodeURIComponent(label.slug)}`;
+        return `${MetabaseSettings.rootPath()}questions/search?label=${encodeURIComponent(label.slug)}`;
     },
 
     publicCard(uuid, type = null) {
-        return `/public/question/${uuid}` + (type ? `.${type}` : ``);
+        return `${MetabaseSettings.rootPath()}public/question/${uuid}` + (type ? `.${type}` : ``);
     },
 
     publicDashboard(uuid) {
-        return `/public/dashboard/${uuid}`;
+        return `${MetabaseSettings.rootPath()}public/dashboard/${uuid}`;
     },
 
     embedCard(token, type = null) {
-        return `/embed/question/${token}` + (type ? `.${type}` : ``);
+        return `${MetabaseSettings.rootPath()}embed/question/${token}` + (type ? `.${type}` : ``);
     },
 }
 

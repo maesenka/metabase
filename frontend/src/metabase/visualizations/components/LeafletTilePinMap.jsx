@@ -38,7 +38,7 @@ export default class LeafletTilePinMap extends LeafletMap {
             return;
         }
 
-        return '/api/tiles/' + zoom + '/' + coord.x + '/' + coord.y + '/' +
+        return '/metabase/api/tiles/' + zoom + '/' + coord.x + '/' + coord.y + '/' +
             latitudeField.id + '/' + longitudeField.id + '/' +
             latitudeIndex + '/' + longitudeIndex + '/' +
             '?query=' + encodeURIComponent(JSON.stringify(dataset_query))

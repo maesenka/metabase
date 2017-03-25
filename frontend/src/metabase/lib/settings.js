@@ -31,6 +31,10 @@ const MetabaseSettings = {
     },
 
     // these are all special accessors which provide a lookup of a property plus some additional help
+    rootPath: function() {
+        return this.get('rootPath', '/');
+    },
+
     adminEmail: function() {
         return mb_settings.admin_email;
     },
