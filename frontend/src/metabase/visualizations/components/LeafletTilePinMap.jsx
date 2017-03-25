@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import ReactDOM from "react-dom";
-
+import MetabaseSettings from "metabase/lib/settings";
 import LeafletMap from "./LeafletMap.jsx";
 import L from "leaflet";
 
@@ -38,7 +38,7 @@ export default class LeafletTilePinMap extends LeafletMap {
             return;
         }
 
-        return '/metabase/api/tiles/' + zoom + '/' + coord.x + '/' + coord.y + '/' +
+        return MetabaseSettings.rootPath() + 'api/tiles/' + zoom + '/' + coord.x + '/' + coord.y + '/' +
             latitudeField.id + '/' + longitudeField.id + '/' +
             latitudeIndex + '/' + longitudeIndex + '/' +
             '?query=' + encodeURIComponent(JSON.stringify(dataset_query))

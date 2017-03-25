@@ -93,5 +93,5 @@
    :timezone_short        (short-timezone-name (setting/get :report-timezone))
    :timezones             common/timezones
    :types                 (types/types->parents)
-   :version               config/mb-version-info}
-   :rootPath              config/mb-context-path)
+   :version               config/mb-version-info
+   :rootPath              config/mb-context-path})

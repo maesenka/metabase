@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 
 import Utils from "metabase/lib/utils";
-
+import MetabaseSettings from "metabase/lib/settings";
 import Select, { Option } from "metabase/components/Select.jsx";
 import Confirm from "metabase/components/Confirm.jsx";
 import Ellipsified from "metabase/components/Ellipsified.jsx";
@@ -51,7 +51,7 @@ export default class CustomGeoJSONWidget extends Component {
             delete value[id];
         }
 
-        await fetch("/metabase/api/setting/custom-geojson", {
+        await fetch( MetabaseSettings.rootPath() + "api/setting/custom-geojson", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ value }),

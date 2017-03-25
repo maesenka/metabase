@@ -51,7 +51,7 @@ const QueryDownloadWidget = ({ className, card, result, uuid, token }) =>
 const UnsavedQueryButton = ({ className, type, result: { json_query }, card }) =>
     <DownloadButton
         className={className}
-        url={`/api/dataset/${type}`}
+        url={`${MetabaseSettings.rootPath()}api/dataset/${type}`}
         params={{ query: JSON.stringify(_.omit(json_query, "constraints")) }}
         extensions={[type]}
     >

@@ -94,7 +94,7 @@ export default class ChoroplethMap extends Component {
             if (details.builtin) {
                 geoJsonPath = details.url;
             } else {
-                geoJsonPath = "/metabase/api/geojson/" + nextProps.settings["map.region"]
+                geoJsonPath = MetabaseSettings.rootPath() + "api/geojson/" + nextProps.settings["map.region"]
             }
             if (this.state.geoJsonPath !== geoJsonPath) {
                 this.setState({

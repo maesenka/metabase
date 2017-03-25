@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from "react";
 
 import { connect } from "react-redux";
 import { push } from "react-router-redux";
-
+import MetabaseSettings from "metabase/lib/settings";
 import CollectionEditorForm from "./CollectionEditorForm.jsx";
 
 import { saveCollection } from "../collections";
@@ -14,7 +14,7 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = {
     saveCollection,
-    onClose: () => push("/metabase/questions")
+    onClose: () => push(MetabaseSettings.rootPath() + "questions")
 }
 
 @connect(mapStateToProps, mapDispatchToProps)

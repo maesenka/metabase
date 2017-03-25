@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { push, replace, goBack } from "react-router-redux";
+import MetabaseSettings from "metabase/lib/settings";
 
 import Icon from "metabase/components/Icon";
 import HeaderWithBack from "metabase/components/HeaderWithBack";
@@ -20,9 +21,9 @@ const mapDispatchToProps = ({
     push,
     replace,
     goBack,
-    goToQuestions: () => push(`/questions`),
-    editCollection: (id) => push(`/collections/${id}`),
-    editPermissions: (id) => push(`/collections/permissions?collectionId=${id}`),
+    goToQuestions: () => push(`${MetabaseSettings.rootPath()}questions`),
+    editCollection: (id) => push(`${MetabaseSettings.rootPath()}collections/${id}`),
+    editPermissions: (id) => push(`${MetabaseSettings.rootPath()}collections/permissions?collectionId=${id}`),
     loadCollections,
 })
 
@@ -41,7 +42,7 @@ export default class CollectionPage extends Component {
                         name={collection && collection.name}
                         description={collection && collection.description}
                         onBack={window.history.length === 1 ?
-                            () => push("/metabase/questions") :
+                            () => push(MetabaseSettings.rootPath() + "questions") :
                             () => goBack()
                         }
                     />

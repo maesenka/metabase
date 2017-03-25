@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
-
+import MetabaseSettings from "metabase/lib/settings";
 import PermissionsEditor from "../components/PermissionsEditor.jsx";
 import PermissionsApp from "./PermissionsApp.jsx";
 
@@ -22,7 +22,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = {
     onUpdatePermission: updatePermission,
     onSave: savePermissions,
-    onCancel: () => window.history.length > 1 ? goBack() : push("/metabase/questions")
+    onCancel: () => window.history.length > 1 ? goBack() : push( MetabaseSettings.rootPath() + "questions")
 };
 
 const Editor = connect(mapStateToProps, mapDispatchToProps)(PermissionsEditor);

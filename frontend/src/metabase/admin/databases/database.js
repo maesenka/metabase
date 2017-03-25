@@ -90,7 +90,7 @@ export const saveDatabase = createThunkAction(SAVE_DATABASE, function(database, 
                 //$scope.$emit("database:created", new_database);
                 savedDatabase = await MetabaseApi.db_create(database);
                 MetabaseAnalytics.trackEvent("Databases", "Create", database.engine);
-                dispatch(push('/metabase/admin/databases?created='+savedDatabase.id));
+                dispatch(push(MetabaseSettings.rootPath() + 'admin/databases?created='+savedDatabase.id));
             }
 
             // this object format is what FormMessage expects:

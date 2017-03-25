@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { Link } from "react-router";
 import fetch from 'isomorphic-fetch';
+import MetabaseSettings from "metabase/lib/settings"
 
 import SidebarSection from "./SidebarSection.jsx";
 
@@ -13,7 +14,7 @@ export default class NextStep extends Component {
     }
 
     async componentWillMount() {
-        let response = await fetch("/metabase/api/setup/admin_checklist", { credentials: 'same-origin' });
+        let response = await fetch( MetabaseSettings.rootPath() + "api/setup/admin_checklist", { credentials: 'same-origin' });
         if (response.status === 200) {
             let sections = await response.json();
             for (let section of sections) {

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import ReactDOM from "react-dom";
 import fetch from 'isomorphic-fetch';
-
+import MetabaseSettings from "metabase/lib/settings";
 import LoadingAndErrorWrapper from "metabase/components/LoadingAndErrorWrapper.jsx";
 
 import reactAnsiStyle from "react-ansi-style";
@@ -32,7 +32,7 @@ export default class Logs extends Component {
 
     componentWillMount() {
         this.timer = setInterval(async () => {
-            let response = await fetch("/metabase/api/util/logs", { credentials: 'same-origin' });
+            let response = await fetch( MetabaseSettings.rootPath() + "api/util/logs", { credentials: 'same-origin' });
             let logs = await response.json()
             this.setState({ logs: logs.reverse() })
         }, 1000);

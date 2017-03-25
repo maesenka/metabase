@@ -6,6 +6,7 @@ import { push } from "react-router-redux";
 import MetabaseAnalytics from "metabase/lib/analytics";
 import { loadTableAndForeignKeys } from "metabase/lib/table";
 import { isFK } from "metabase/lib/types";
+import MetabaseSettings from "metabase/lib/settings";
 
 import { MetabaseApi, SegmentApi, MetricApi, RevisionsApi } from "metabase/services";
 
@@ -66,7 +67,7 @@ export const selectDatabase = createThunkAction("SELECT_DATABASE", function(db) 
             dispatch(fetchDatabaseIdfields(db.id));
 
             // we also want to update our url to match our new state
-            dispatch(push('/metabase/admin/datamodel/database/'+db.id));
+            dispatch(push( MetabaseSettings.rootPath() + 'admin/datamodel/database/'+db.id));
 
             return database;
         } catch (error) {
@@ -79,7 +80,7 @@ export const selectDatabase = createThunkAction("SELECT_DATABASE", function(db) 
 export const selectTable = createThunkAction("SELECT_TABLE", function(table) {
     return function(dispatch, getState) {
         // we also want to update our url to match our new state
-        dispatch(push('/metabase/admin/datamodel/database/'+table.db_id+'/table/'+table.id));
+        dispatch(push( MetabaseSettings.rootPath() + 'admin/datamodel/database/'+table.db_id+'/table/'+table.id));
 
         return table.id;
     };
